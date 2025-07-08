@@ -1,0 +1,281 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   color: #333;
+   line-height: 1.6;
+   min-height: 100vh;
+}
+
+.container {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 20px;
+}
+
+header {
+   background: rgba(255, 255, 255, 0.95);
+   backdrop-filter: blur(10px);
+   border-radius: 20px;
+   padding: 40px;
+   text-align: center;
+   margin-bottom: 40px;
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+   animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+   from {
+      transform: translateY(30px);
+      opacity: 0;
+   }
+   to {
+      transform: translateY(0);
+      opacity: 1;
+   }
+}
+
+.profile-pic {
+   width: 120px;
+   height: 120px;
+   border-radius: 50%;
+   margin: 0 auto 20px;
+   background: linear-gradient(45deg, #667eea, #764ba2);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 48px;
+   color: white;
+   font-weight: bold;
+   transition: transform 0.3s ease;
+   cursor: pointer;
+}
+
+.profile-pic:hover {
+   transform: scale(1.05) rotate(5deg);
+}
+
+h1 {
+   font-size: 2.5em;
+   margin-bottom: 10px;
+   background: linear-gradient(45deg, #667eea, #764ba2);
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+   animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+.tagline {
+   font-size: 1.2em;
+   color: #666;
+   margin-bottom: 30px;
+   animation: fadeIn 1s ease-out 0.5s both;
+}
+
+.contact-info {
+   display: flex;
+   justify-content: center;
+   gap: 30px;
+   flex-wrap: wrap;
+   animation: fadeIn 1s ease-out 0.7s both;
+}
+
+.contact-item {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   color: #555;
+   text-decoration: none;
+   transition: all 0.3s ease;
+   padding: 8px 16px;
+   border-radius: 25px;
+   background: rgba(255, 255, 255, 0.5);
+}
+
+.contact-item:hover {
+   color: #667eea;
+   transform: translateY(-2px);
+   background: rgba(255, 255, 255, 0.8);
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+   font-size: 2em;
+   text-align: center;
+   margin-bottom: 40px;
+   color: white;
+   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+   animation: fadeIn 1s ease-out 0.9s both;
+}
+
+.projects {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+   gap: 30px;
+   margin-bottom: 40px;
+}
+
+.project-card {
+   background: rgba(255, 255, 255, 0.95);
+   backdrop-filter: blur(10px);
+   border-radius: 20px;
+   padding: 30px;
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+   transition: all 0.3s ease;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   opacity: 0;
+   transform: translateY(20px);
+   animation: slideInUp 0.6s ease-out forwards;
+}
+
+.project-card:nth-child(2) {
+   animation-delay: 0.2s;
+}
+.project-card:nth-child(3) {
+   animation-delay: 0.4s;
+}
+.project-card:nth-child(4) {
+   animation-delay: 0.6s;
+}
+
+.project-card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.project-title {
+   font-size: 1.5em;
+   margin-bottom: 15px;
+   color: #333;
+   position: relative;
+}
+
+.project-title::after {
+   content: "";
+   position: absolute;
+   bottom: -5px;
+   left: 0;
+   width: 0;
+   height: 2px;
+   background: linear-gradient(45deg, #667eea, #764ba2);
+   transition: width 0.3s ease;
+}
+
+.project-card:hover .project-title::after {
+   width: 100%;
+}
+
+.project-description {
+   color: #666;
+   margin-bottom: 20px;
+   line-height: 1.6;
+}
+
+.project-tech {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px;
+   margin-bottom: 20px;
+}
+
+.tech-tag {
+   background: linear-gradient(45deg, #667eea, #764ba2);
+   color: white;
+   padding: 4px 12px;
+   border-radius: 20px;
+   font-size: 0.9em;
+   font-weight: 500;
+   transition: transform 0.2s ease;
+}
+
+.tech-tag:hover {
+   transform: scale(1.05);
+}
+
+.project-links {
+   display: flex;
+   gap: 15px;
+}
+
+.project-link {
+   color: #667eea;
+   text-decoration: none;
+   font-weight: 500;
+   transition: all 0.3s ease;
+   padding: 8px 16px;
+   border-radius: 20px;
+   border: 2px solid transparent;
+   background: rgba(102, 126, 234, 0.1);
+}
+
+.project-link:hover {
+   color: white;
+   background: linear-gradient(45deg, #667eea, #764ba2);
+   transform: translateX(5px);
+   border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+   .container {
+      padding: 10px;
+   }
+
+   header {
+      padding: 30px 20px;
+   }
+
+   h1 {
+      font-size: 2em;
+   }
+
+   .contact-info {
+      flex-direction: column;
+      gap: 15px;
+   }
+
+   .projects {
+      grid-template-columns: 1fr;
+   }
+
+   .project-card {
+      padding: 20px;
+   }
+}
+
+/* Scroll smooth */
+html {
+   scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+   width: 8px;
+}
+
+::-webkit-scrollbar-track {
+   background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+   background: linear-gradient(45deg, #667eea, #764ba2);
+   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: linear-gradient(45deg, #764ba2, #667eea);
+}

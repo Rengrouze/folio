@@ -1,4 +1,3 @@
-// Chargement des données depuis le fichier JSON
 async function loadPortfolioData() {
    try {
       const response = await fetch("data.json");
@@ -29,7 +28,6 @@ async function loadPortfolioData() {
    }
 }
 
-// Function to create contact elements
 function createContactElements(contact) {
    const contacts = [];
    if (contact.email) contacts.push(`<a href="mailto:${contact.email}" class="contact-item">📧 ${contact.email}</a>`);
@@ -39,7 +37,6 @@ function createContactElements(contact) {
    return contacts.join("");
 }
 
-// Function to create tech stack
 function createTechStack(techStack) {
    const sections = [
       { title: "Frontend", items: techStack.frontend },
@@ -51,58 +48,64 @@ function createTechStack(techStack) {
       { title: "Tools", items: techStack.tools },
    ];
 
-   // Each tech section becomes like a mini-card
    return sections
       .map(
-         (section) => `
-           <div class="tech-category-card">
-               <h4 class="tech-category-title">${section.title}</h4>
-               <div class="tech-items-grid">
-                   ${section.items
-                      .map(
-                         (item) => `
-                       <div class="tech-item-icon">
-                           ${item.iconClass ? `<i class="${item.iconClass}"></i>` : '<i class="fa-solid fa-code"></i>'}
-                           <p>${item.name}</p>
-                       </div>
-                   `
-                      )
-                      .join("")}
-               </div>
-           </div>
-           `
+         (section, index) => `
+         <section class="tech-category-card" role="region" aria-labelledby="tech-title-${index}">
+            <h4 class="tech-category-title" id="tech-title-${index}">${section.title}</h4>
+            <div class="tech-items-grid">
+               ${section.items
+                  .map(
+                     (item) => `
+                  <div class="tech-item-icon" role="img" aria-label="${item.name} logo">
+                     ${
+                        item.iconClass
+                           ? `<i class="${item.iconClass}" aria-hidden="true"></i>`
+                           : '<i class="fa-solid fa-code" aria-hidden="true"></i>'
+                     }
+                     <p>${item.name}</p>
+                  </div>`
+                  )
+                  .join("")}
+            </div>
+         </section>
+      `
       )
       .join("");
 }
 
-// Fonction pour créer une card de projet
 function createProjectCard(project) {
    const techTags = project.technologies.map((tech) => `<span class="tech-tag">${tech}</span>`).join("");
    const inProgress = project.status === "in-progress";
-   const badge = inProgress ? '<div class="progress-badge">🚧 En cours</div>' : "";
+   const badge = inProgress ? '<div class="progress-badge" aria-label="Projet en cours">🚧 En cours</div>' : "";
    const cardClass = inProgress ? "project-card in-progress" : "project-card";
 
    const links = [];
-   if (project.links.github) links.push(`<a href="${project.links.github}" class="project-link" target="_blank">📂 Code</a>`);
-   if (project.links.demo) links.push(`<a href="${project.links.demo}" class="project-link" target="_blank">🚀 Demo</a>`);
+   if (project.links.github)
+      links.push(
+         `<a href="${project.links.github}" class="project-link" target="_blank" aria-label="Code source du projet ${project.title}">📂 Code</a>`
+      );
+   if (project.links.demo)
+      links.push(
+         `<a href="${project.links.demo}" class="project-link" target="_blank" aria-label="Démo du projet ${project.title}">🚀 Demo</a>`
+      );
 
    const projectImage = project.imageUrl
-      ? `<img src="${project.imageUrl}" alt="Image du projet ${project.title}" class="project-card-image">`
+      ? `<img src="${project.imageUrl}" alt="Image du projet ${project.title}" class="project-card-image" />`
       : "";
 
    return `
-     <div class="${cardClass}" data-project-id="${project.id}">
+     <article class="${cardClass}" data-project-id="${project.id}" tabindex="0" role="button" aria-describedby="desc-${project.id}">
          ${badge}
          ${projectImage}
          <h3 class="project-title">${project.title}</h3>
-         <p class="project-description">${project.description}</p>
+         <p id="desc-${project.id}" class="project-description">${project.description}</p>
          <div class="project-tech">${techTags}</div>
          <div class="project-links">${links.join("")}</div>
-     </div>
+     </article>
    `;
 }
 
-// Fonction pour créer et afficher la modal
 function showModal(project) {
    const modal = document.createElement("div");
    modal.className = "modal-overlay";
@@ -145,13 +148,11 @@ function showModal(project) {
    };
 }
 
-// Fonction principale d'initialisation
 async function initPortfolio() {
    const data = await loadPortfolioData();
 
    document.getElementById("name").textContent = data.name;
    document.getElementById("tagline").textContent = data.tagline;
-   document.getElementById("profilePic").textContent = data.initials;
    document.title = `Portfolio - ${data.name}`;
 
    document.getElementById("contactInfo").innerHTML = createContactElements(data.contact);
@@ -177,7 +178,6 @@ async function initPortfolio() {
    });
 }
 
-// Animation avatar
 function addAvatarAnimation() {
    const avatar = document.getElementById("profilePic");
    let rotation = 0;

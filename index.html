@@ -4,6 +4,7 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Portfolio - Elias Oumghar</title>
+      <meta name="description" content="Portfolio d’Elias Oumghar, développeur passionné" />
       <link rel="stylesheet" href="style.css" />
       <link
          rel="stylesheet"
@@ -12,21 +13,31 @@
          crossorigin="anonymous"
          referrerpolicy="no-referrer"
       />
+      <link rel="icon" href="./src/favicon.ico" type="image/x-icon" />
    </head>
    <body>
-      <div class="container">
-         <header>
-            <div class="profile-pic" id="profilePic">EO</div>
+      <div class="container" role="main">
+         <header role="banner">
+            <div class="profile-pic" id="profilePic" role="img" aria-label="Photo de Elias Oumghar">
+               <img src="src/me.jpg" alt="Photo de Elias Oumghar" />
+            </div>
+
             <h1 id="name">Elias Oumghar</h1>
             <p class="tagline" id="tagline">Développeur passionné</p>
-            <div class="contact-info" id="contactInfo"></div>
+            <div class="contact-info" id="contactInfo" aria-label="Informations de contact"></div>
+            <div class="cv-section" aria-label="Section curriculum vitae">
+               <p>💼 Hey, je cherche une <strong>alternance en DevOps</strong> !</p>
+               <a href="./src/CV Eo.pdf" download class="cv-download" role="link" aria-label="Télécharger le CV d’Elias Oumghar"
+                  >📄 Télécharger mon CV</a
+               >
+            </div>
          </header>
 
-         <h2 class="section-title">Ma Stack Technique</h2>
-         <div class="tech-stack-container" id="techStackContainer"></div>
+         <h2 class="section-title" id="techStackTitle">Ma Stack Technique</h2>
+         <div class="tech-stack-container" id="techStackContainer" role="region" aria-labelledby="techStackTitle"></div>
 
-         <h2 class="section-title">Mes Projets</h2>
-         <div class="projects" id="projects"></div>
+         <h2 class="section-title" id="projectsTitle">Mes Projets perso</h2>
+         <div class="projects" id="projects" role="region" aria-labelledby="projectsTitle"></div>
       </div>
 
       <script src="script.js"></script>
